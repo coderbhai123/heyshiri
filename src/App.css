@@ -1,0 +1,636 @@
+.dialog {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 0 24px rgba(210, 105, 30, 0.18);
+  padding: 28px 20px;
+  max-width: 520px;
+  width: calc(100% - 40px);
+  margin: 12px auto;
+}
+/* Make dialogs more mobile friendly */
+@media (max-width: 600px) {
+  .dialog {
+    padding: 18px 12px;
+    border-radius: 12px;
+    width: calc(100% - 24px);
+    margin: 8px auto;
+  }
+}
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Great+Vibes&display=swap');
+
+/* Ensure background video fills viewport and doesn't intercept clicks */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+/* Responsive admin table */
+.admin-page-dialog table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.admin-page-dialog th,
+.admin-page-dialog td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+@media (max-width: 600px) {
+  .admin-page-dialog table thead { display: none; }
+  .admin-page-dialog table, .admin-page-dialog tbody, .admin-page-dialog tr, .admin-page-dialog td { display: block; width: 100%; }
+  .admin-page-dialog tr { margin-bottom: 12px; }
+  .admin-page-dialog td { padding-left: 50%; position: relative; }
+  .admin-page-dialog td:before { position: absolute; left: 12px; top: 10px; width: 45%; padding-right: 10px; white-space: nowrap; font-weight: 700; }
+  .admin-page-dialog td:nth-of-type(1):before { content: 'Name'; }
+  .admin-page-dialog td:nth-of-type(2):before { content: 'Phone'; }
+  .admin-page-dialog td:nth-of-type(3):before { content: 'Guests'; }
+  .admin-page-dialog td:nth-of-type(4):before { content: 'Arrival'; }
+  .admin-page-dialog td:nth-of-type(5):before { content: 'Coming'; }
+}
+
+/* Prevent video from creating horizontal scroll on small devices */
+@media (max-width: 600px) {
+  .video-bg {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    transform: none;
+  }
+}
+
+.video-bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+body, html, #root, .App {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Forum', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #4b2e05;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Landing Page */
+/* Landing page - mobile first */
+.landing-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 12px;
+  background: transparent;
+}
+
+.landing-content {
+  background: rgba(255,255,255,0.5);
+  padding: 20px 18px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+}
+
+.hashtag {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  color: #FFD54F; /* bright warm yellow for #Hey */
+  user-select: none;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* subtle shadow for readability */
+}
+
+.shi {
+  color: #F48FB1; /* bright pink */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.ri {
+  color: #FF8A65; /* bright orange */
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.countdown-box {
+  background: #fff3e0;
+  border: 2px solid #d2691e;
+  border-radius: 12px;
+  padding: 14px 8px;
+  margin: 14px auto;
+  width: auto;
+  min-width: 160px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #b34700;
+  box-shadow: 0 6px 12px rgba(210, 105, 30, 0.25);
+  text-align: center;
+}
+
+.countdown .to-date {
+  font-family: 'Forum', sans-serif;
+  font-size: 1.1rem;
+  color: #a0522d;
+  margin-left: 10px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.names-line {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #b34700;
+  margin-bottom: 8px;
+  margin-top: -8px;
+  letter-spacing: 1.5px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.10);
+  user-select: none;
+}
+
+/* RSVP heading uses Great Vibes for a decorative look */
+.rsvp-heading {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  margin: 0 0 12px 0;
+}
+
+.quote {
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #a0522d;
+  font-size: calc(1rem + 2px);
+}
+
+.side-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.circle-button.big {
+  background: #d2691e;
+  border: none;
+  color: white;
+  /* keep buttons perfectly square and responsive */
+  width: min(160px, 44vw);
+  aspect-ratio: 1 / 1;
+  max-width: 44vw;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(210, 105, 30, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 700;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.circle-button.big:hover {
+  background: #b34700;
+}
+
+.side-image {
+  /* make images fill the entire circle button */
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+  border: 3px solid white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.button-label {
+  user-select: none;
+  text-align: center;
+  display: block;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Side Menu Page */
+.side-menu-page {
+  max-width: 720px;
+  margin: 20px auto;
+  background: transparent;
+  border-radius: 14px;
+  padding: 18px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  color: #4b2e05;
+}
+
+/* Typography scaling helpers */
+html {
+  font-size: 16px;
+}
+@media (max-width: 600px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 380px) {
+  html { font-size: 14px; }
+}
+
+.side-menu-inner {
+  max-width: 720px;
+  margin: 40px auto 24px auto;
+  background: rgba(255,255,255,0.9);
+  border-radius: 14px;
+  padding: 18px 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.countdown-box.small {
+  width: 160px;
+  font-size: 1.2rem;
+  padding: 10px 0;
+}
+
+.side-title {
+  font-family: 'Forum', cursive;
+  font-size: 2.8rem;
+  color: #d2691e;
+  user-select: none;
+}
+
+.side-menu-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.side-menu-buttons button {
+  background: #d2691e;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(210, 105, 30, 0.7);
+  transition: background 0.3s ease;
+  min-width: 120px;
+  touch-action: manipulation;
+}
+
+.side-menu-buttons button:hover {
+  background: #b34700;
+}
+
+/* RSVP Form */
+.rsvp-form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-align: left;
+  color: #5d3a00;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus {
+  border-color: #f9a825;
+  outline: none;
+}
+
+/* Restore boxed appearance for RSVP input fields */
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  border: 1px solid #d0cfcf;
+  border-radius: 10px;
+  background: #ffffff;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #2a2a2a;
+}
+
+.required {
+  color: #d2691e;
+  margin-left: 3px;
+}
+
+.rsvp-options {
+  border: 2px solid #d2691e;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 20px 0;
+  color: #5d3a00;
+}
+
+.rsvp-options legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.rsvp-options label {
+  display: inline-block;
+  margin-right: 32px;
+  margin-bottom: 0;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.rsvp-options input[type="radio"] {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.rsvp-emoticon {
+  display: block;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.form-buttons {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-buttons button {
+  background: #d2691e;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  touch-action: manipulation;
+}
+
+.error {
+  background: #b34700;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* WhatsApp link */
+.whatsapp-link {
+  margin-top: 20px;
+  font-weight: 600;
+  color: #4b2e05;
+}
+
+.whatsapp-link a {
+  color: #25d366;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.whatsapp-link a:hover {
+  text-decoration: underline;
+}
+
+/* Itinerary */
+.itinerary-dialog ul {
+  list-style: none;
+  padding: 0;
+  color: #5d3a00;
+}
+
+.itinerary-dialog li {
+  background: #fff3e0;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(210, 105, 30, 0.3);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Aashirwad QR centering and responsiveness */
+.aashirwad-dialog .qr-code-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.aashirwad-dialog .qr-code-container img {
+  max-width: 340px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.aashirwad-dialog .highlight-line {
+  display: block;
+  background: #fff8e1;
+  border: 2px solid #ffd54f;
+  color: #6b3f00;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow: 0 6px 12px rgba(210,105,30,0.12);
+  margin: 8px auto 0 auto;
+  max-width: 420px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .landing-content {
+    padding: 18px 14px;
+    /* prevent the dialog from covering the full viewport on small phones */
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .side-menu-inner {
+    margin: 40px 12px; /* keep it accessible on small screens */
+    padding: 18px 16px;
+  }
+  .side-buttons {
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+    justify-content: center;
+  }
+  .circle-button.big {
+    /* keep mobile size proportional and square; cap small-screen size so buttons don't overflow */
+    width: min(140px, 44vw);
+    aspect-ratio: 1 / 1;
+    padding: 6px; /* ensure content (image + label) has breathing room */
+  }
+  .side-menu-page {
+    margin: 20px 15px;
+    padding: 25px 20px;
+  }
+  /* Make form buttons full width and touch friendly */
+  .form-buttons {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  .form-buttons button {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+  /* Ensure inputs are easy to tap */
+  .rsvp-form input,
+  .rsvp-form select,
+  .rsvp-form textarea {
+    padding: 14px 12px;
+    font-size: 16px;
+  }
+  /* Stack side menu buttons vertically and increase size */
+  .side-menu-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .side-menu-buttons button {
+    min-width: 100%;
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1.05rem;
+  }
+  /* Reduce margin for big circle buttons and make them responsive */
+  .circle-button.big {
+    width: 44vw;
+    aspect-ratio: 1 / 1;
+  }
+  /* Shrink QR on very small screens */
+  .aashirwad-dialog .qr-code-container img {
+    max-width: 260px;
+  }
+  /* add safe-area padding for iPhones with notches */
+  .landing-page { padding-left: env(safe-area-inset-left, 12px); padding-right: env(safe-area-inset-right, 12px); }
+}
+
+/* Keep buttons side-by-side on large phones (e.g. iPhone 15 Pro Max in portrait) */
+@media (min-width: 430px) and (max-width: 820px) {
+  .side-buttons {
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+  }
+  .circle-button.big {
+    /* slightly smaller so two buttons fit side-by-side comfortably */
+    width: min(140px, 30vw);
+    aspect-ratio: 1 / 1;
+  }
+  .landing-content {
+    /* allow a little less vertical fill so header remains visible */
+    max-height: calc(100vh - 80px);
+  }
+}
+
+/* Additional breakpoint for very small phones */
+@media (max-width: 380px) {
+  .hashtag {
+    font-size: 2.2rem;
+  }
+  .countdown-box {
+    width: 220px;
+    font-size: 1.4rem;
+  }
+  .circle-button.big {
+    width: 46vw;
+    height: 46vw;
+  }
+  .aashirwad-dialog .qr-code-container img {
+    max-width: 220px;
+  }
+  .landing-content {
+    padding: 20px 12px;
+  }
+}
+
+/* Mobile-first 375px optimizations */
+@media (max-width: 375px) {
+  /* base font sizing for compact devices */
+  html { font-size: 14px; }
+
+  /* constrain the app to a comfortable readable width */
+  .landing-content, .side-menu-page, .side-menu-inner, .dialog {
+    max-width: 375px;
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+  }
+
+  /* ensure dialog doesn't cover full viewport */
+  .dialog, .landing-content {
+    max-height: calc(100vh - 72px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* full-width touch targets */
+  .form-buttons button, .side-menu-buttons button {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  /* large circular buttons scaled for 375px */
+  .side-buttons { gap: 14px; }
+  .circle-button.big {
+    width: calc(50% - 18px);
+    aspect-ratio: 1 / 1;
+    min-width: 120px;
+    max-width: 160px;
+    padding: 6px;
+  }
+  .side-buttons { justify-content: space-between; }
+
+  /* images and QR sizes */
+  .side-image { width: 62%; max-width: 110px; }
+  .aashirwad-dialog .qr-code-container img { max-width: 240px; }
+
+  /* reduce margins and whitespace */
+  .quote { margin-bottom: 18px; }
+  .countdown-box { margin: 12px auto; }
+
+  /* avoid horizontal overflow */
+  body, html, #root, .App { overflow-x: hidden; }
+}
+
+  /* Global scroll prevention for all widths */
+  html, body, #root, .App {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }

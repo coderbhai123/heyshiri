@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hashtag Color Preview</title>
+  <style>
+    body { margin:0; font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg,#f5efe6,#fff5e6); height:100vh; display:flex; align-items:center; justify-content:center; }
+    .panel { background: rgba(255,255,255,0.55); padding: 36px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); width: min(720px, 92vw); }
+    h1.example { font-family: 'Great Vibes', cursive; font-size: 64px; margin: 0 0 10px; }
+    .row { display:flex; gap:18px; align-items:center; margin-bottom: 18px; }
+    .meta { width: 220px; font-size: 14px; color:#5d3a00; }
+    .note { font-size:13px; color:#333; margin-top:6px }
+
+    /* Option styles */
+    .opt-dark { color: #2c3e50; text-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .opt-white { color: #ffffff; text-shadow: 0 1px 0 rgba(0,0,0,0.55), 0 6px 18px rgba(0,0,0,0.35); }
+    .opt-black { color: #111827; text-shadow: none; }
+    .opt-gold { color: #f9a825; text-shadow: 0 2px 8px rgba(0,0,0,0.18); }
+    .opt-backdrop { color: #2c3e50; background: rgba(255,255,255,0.9); padding: 6px 14px; border-radius: 12px; display:inline-block; box-shadow: 0 6px 12px rgba(0,0,0,0.06); }
+
+    /* small-screen scaling */
+    @media (max-width:420px) {
+      h1.example { font-size: 40px; }
+      .meta { width: 140px; }
+      .panel { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="row">
+      <div class="meta"><strong>1 — Dark slate (current)</strong><div class="note">Readable on light and translucent backgrounds.</div></div>
+      <h1 class="example opt-dark">#HeyShiRi</h1>
+    </div>
+
+    <div class="row">
+      <div class="meta"><strong>2 — Pure white (high-light)</strong><div class="note">Bright, stands out on dark/video backgrounds. Uses stroke via shadow for legibility.</div></div>
+      <h1 class="example opt-white">#HeyShiRi</h1>
+    </div>
+
+    <div class="row">
+      <div class="meta"><strong>3 — Near-black</strong><div class="note">Very high contrast on bright/translucent panels; classic readable choice.</div></div>
+      <h1 class="example opt-black">#HeyShiRi</h1>
+    </div>
+
+    <div class="row">
+      <div class="meta"><strong>4 — Golden accent</strong><div class="note">Warm accent that keeps wedding feel; may need text-shadow/backdrop on bright areas.</div></div>
+      <h1 class="example opt-gold">#HeyShiRi</h1>
+    </div>
+
+    <div class="row">
+      <div class="meta"><strong>5 — Backdrop pill</strong><div class="note">Small semi-opaque white pill behind the text for guaranteed contrast over video.</div></div>
+      <h1 class="example opt-backdrop">#HeyShiRi</h1>
+    </div>
+
+    <p style="margin-top:12px;color:#6b4a2b;font-size:13px">Pick one (1-5), or ask me to apply your preferred option to <code>src/App.css</code> and rebuild.</p>
+  </div>
+</body>
+</html>

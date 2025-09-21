@@ -1,0 +1,17 @@
+/* Video background styling */
+.video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Ensure main content is above video */
+.App, .landing-page, .side-menu-page, .dialog {
+  position: relative;
+  z-index: 1;
+}

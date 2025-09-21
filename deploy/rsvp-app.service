@@ -1,0 +1,17 @@
+[Unit]
+Description=RSVP App
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/sakshi-ritesh
+Environment=NODE_ENV=production
+Environment=PORT=4000
+Environment=ADMIN_PASSWORD=My$ecureP@ssw0rd
+Environment=ADMIN_TOKEN=supersecrettoken123
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
